@@ -70,14 +70,14 @@ public class StudentService {
    public Student put(Integer studentId, StudentUpdateRequest updateRequest) {
       Student student = getById(studentId);
 
-      boolean isPresent = updateRequest.getName() != null;
-      student.setName(isPresent? updateRequest.getName() : student.getName());
+      boolean isPresent = updateRequest.getNombres() != null;
+      student.setName(isPresent? updateRequest.getNombres() : student.getName());
 
-      isPresent = updateRequest.getLastname() != null;
-      student.setLastname(isPresent? updateRequest.getLastname() : student.getLastname());
+      isPresent = updateRequest.getApellidos() != null;
+      student.setLastname(isPresent? updateRequest.getApellidos() : student.getLastname());
 
-      isPresent = updateRequest.getAverage() != null;
-      student.setAverage(isPresent? updateRequest.getAverage() : student.getAverage());
+      isPresent = updateRequest.getPromedio() != null;
+      student.setAverage(isPresent? updateRequest.getPromedio() : student.getAverage());
 
       student = studentRepository.save(student);
       return student;

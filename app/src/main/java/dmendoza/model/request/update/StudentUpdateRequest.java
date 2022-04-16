@@ -11,27 +11,27 @@ public class StudentUpdateRequest {
    @Range(min = 0, max = 100, message = "El promedio debe ser entre 0 y 100")
    private Double promedio;
 
-   public String getName() {
+   public String getNombres() {
       return nombres;
    }
 
-   public void setName(String name) {
+   public void setNombres(String name) {
       this.nombres = name;
    }
 
-   public String getLastname() {
+   public String getApellidos() {
       return apellidos;
    }
 
-   public void setLastname(String lastname) {
+   public void setApellidos(String lastname) {
       this.apellidos = lastname;
    }
 
-   public Double getAverage() {
+   public Double getPromedio() {
       return promedio;
    }
 
-   public void setAverage(Double average) {
+   public void setPromedio(Double average) {
       this.promedio = average;
    }
 }
