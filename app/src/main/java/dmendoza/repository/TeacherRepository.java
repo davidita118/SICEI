@@ -7,14 +7,8 @@ import dmendoza.config.SiceiDB;
 import dmendoza.model.Teacher;
 
 public class TeacherRepository {
-   public Optional<List<Teacher>> getAllTeachers() {
-      Optional<List<Teacher>> sOptional = Optional.empty();
-
-      if(!SiceiDB.getTeachers().isEmpty()) {
-         sOptional = Optional.of(SiceiDB.getTeachers());
-      }
-
-      return sOptional;
+   public List<Teacher> getAllTeachers() {
+      return SiceiDB.getTeachers();
    }
 
    public Optional<Teacher> getTeacherById(Integer teacherId) {
@@ -34,7 +28,7 @@ public class TeacherRepository {
       Optional<Teacher> sOptional = Optional.empty();
 
       for(Teacher teacher: SiceiDB.getTeachers()) {
-         if(teacher.getNumEmployee() == teacherNumEmployee) {
+         if(teacher.getNumEmployee().compareTo(teacherNumEmployee) == 0) {
             sOptional = Optional.of(teacher);
             break;
          }
