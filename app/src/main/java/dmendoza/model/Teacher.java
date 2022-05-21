@@ -1,9 +1,17 @@
 package dmendoza.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "teacher")
 public class Teacher extends Person {
 
+   @Column(name = "num_employee")
    private Integer numEmployee;
 
+   @Column(name = "class_hours")
    private Double classHours;
 
    public Integer getNumEmployee() {
