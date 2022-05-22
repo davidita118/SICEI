@@ -66,8 +66,8 @@ public class Teacher {
    }
 
    @JsonProperty("horasClase")
-   public Double getClassHours() {
-      return classHours;
+   public Integer getClassHours() {
+      return classHours.intValue();
    }
 
    public void setClassHours(Double classHours) {

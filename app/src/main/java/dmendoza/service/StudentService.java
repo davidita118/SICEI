@@ -106,6 +106,9 @@ public class StudentService {
       isPresent = updateRequest.getPromedio() != null;
       student.setAverage(isPresent? updateRequest.getPromedio() : student.getAverage());
 
+      isPresent = updateRequest.getMatricula() != null;
+      student.setCode(isPresent? updateRequest.getMatricula() : student.getCode());
+
       student = studentRepository.save(student);
       return student;
    }

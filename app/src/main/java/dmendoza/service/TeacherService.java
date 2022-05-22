@@ -28,7 +28,7 @@ public class TeacherService {
    }
 
    public Teacher getById(Integer teacherId) {
-      Optional<Teacher> tOptional = teacherRepository.findByNumEmployee(teacherId);
+      Optional<Teacher> tOptional = teacherRepository.findById(teacherId);
 
       if(!tOptional.isPresent()) {
          throw new NotFoundException("El profesor solicitado no existe");
