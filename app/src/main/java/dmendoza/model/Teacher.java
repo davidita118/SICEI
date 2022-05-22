@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "teacher")
 public class Teacher {
@@ -36,6 +38,7 @@ public class Teacher {
       this.id = id;
    }
 
+   @JsonProperty("nombres")
    public String getName() {
       return name;
    }
@@ -44,6 +47,7 @@ public class Teacher {
       this.name = name;
    }
 
+   @JsonProperty("apellidos")
    public String getLastname() {
       return lastname;
    }
@@ -52,6 +56,7 @@ public class Teacher {
       this.lastname = lastname;
    }
 
+   @JsonProperty("numeroEmpleado")
    public Integer getNumEmployee() {
       return numEmployee;
    }
@@ -60,6 +65,7 @@ public class Teacher {
       this.numEmployee = numEmployee;
    }
 
+   @JsonProperty("horasClase")
    public Double getClassHours() {
       return classHours;
    }

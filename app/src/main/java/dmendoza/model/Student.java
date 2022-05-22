@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -39,6 +41,7 @@ public class Student {
       this.id = id;
    }
 
+   @JsonProperty("nombres")
    public String getName() {
       return name;
    }
@@ -47,6 +50,7 @@ public class Student {
       this.name = name;
    }
 
+   @JsonProperty("apellidos")
    public String getLastname() {
       return lastname;
    }
@@ -55,6 +59,7 @@ public class Student {
       this.lastname = lastname;
    }
 
+   @JsonProperty("matricula")
    public String getCode() {
       return code;
    }
@@ -63,6 +68,7 @@ public class Student {
       this.code = code;
    }
 
+   @JsonProperty("promedio")
    public Double getAverage() {
       return average;
    }
@@ -71,6 +77,7 @@ public class Student {
       this.average = average;
    }
 
+   @JsonProperty("fotoPerfilUrl")
    public String getProfilePicture() {
       return profilePicture;
    }
