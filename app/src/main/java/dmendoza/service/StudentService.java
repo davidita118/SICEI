@@ -33,7 +33,7 @@ public class StudentService {
    @Autowired
    private StudentRepository studentRepository;
 
-   @Value("${aws.s3.profilePictureBucket")
+   @Value("${aws.s3.profilePictureBucket}")
    private String profilePictureBucket;
 
    @Value("${aws.accessKey}")
