@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dmendoza.exception.model.NotFoundException;
@@ -16,17 +17,18 @@ import dmendoza.repository.StudentRepository;
 @Service
 public class StudentService {
    
-   private StudentRepository studentRepository = new StudentRepository();
+   @Autowired
+   private StudentRepository studentRepository;
 
    public List<Student> getAll() {
       List<Student> students = new ArrayList<>();
-      studentRepository.getAllStudents().iterator().forEachRemaining(students::add);
+      studentRepository.findAll().iterator().forEachRemaining(students::add);
 
       return students;
    }
 
    public Student getById(Integer studentId) {
-      Optional<Student> sOptional = studentRepository.getStudentById(studentId);
+      Optional<Student> sOptional = studentRepository.findById(studentId);
 
       if(!sOptional.isPresent()) {
          throw new NotFoundException("El estudiante solicitado no existe");  
@@ -36,7 +38,7 @@ public class StudentService {
    }
 
    public Student getByCode(String code) {
-      Optional<Student> sOptional = studentRepository.getStudentByCode(code);
+      Optional<Student> sOptional = studentRepository.findByCode(code);
 
       if(!sOptional.isPresent()) {
          throw new NotFoundException("El estudiante solicitado no existe"); 
@@ -60,7 +62,7 @@ public class StudentService {
    }
 
    private void validateCode(String code) {
-      Optional<Student> sOptional = studentRepository.getStudentByCode(code);
+      Optional<Student> sOptional = studentRepository.findByCode(code);
 
       if(sOptional.isPresent()) {
          throw new UnprocessableEntityException("Ya existe un estudiante con la matrícula " + code); 

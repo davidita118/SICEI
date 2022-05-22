@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dmendoza.exception.model.NotFoundException;
@@ -16,17 +17,18 @@ import dmendoza.repository.TeacherRepository;
 @Service
 public class TeacherService {
    
-   private TeacherRepository teacherRepository = new TeacherRepository();
+   @Autowired
+   private TeacherRepository teacherRepository;
 
    public List<Teacher> getAll() {
       List<Teacher> teachers = new ArrayList<>();
-      teacherRepository.getAllTeachers().iterator().forEachRemaining(teachers::add);
+      teacherRepository.findAll().iterator().forEachRemaining(teachers::add);
 
       return teachers;
    }
 
    public Teacher getById(Integer teacherId) {
-      Optional<Teacher> tOptional = teacherRepository.getTeacherById(teacherId);
+      Optional<Teacher> tOptional = teacherRepository.findByNumEmployee(teacherId);
 
       if(!tOptional.isPresent()) {
          throw new NotFoundException("El profesor solicitado no existe");
@@ -36,7 +38,7 @@ public class TeacherService {
    }
 
    public Teacher getByNumEmployee(Integer teacherNumEmployee) {
-      Optional<Teacher> tOptional = teacherRepository.getTeacherByNumEmployee(teacherNumEmployee);
+      Optional<Teacher> tOptional = teacherRepository.findByNumEmployee(teacherNumEmployee);
 
       if(!tOptional.isPresent()) {
          throw new NotFoundException("El profesor solicitado no existe");
@@ -60,7 +62,7 @@ public class TeacherService {
    }
 
    private void validateNumEmployee(Integer teacherNumEmployee) {
-      Optional<Teacher> tOptional = teacherRepository.getTeacherByNumEmployee(teacherNumEmployee);
+      Optional<Teacher> tOptional = teacherRepository.findByNumEmployee(teacherNumEmployee);
 
       if(tOptional.isPresent()) {
          throw new UnprocessableEntityException("Ya existe un profesor con el número de empleado " + teacherNumEmployee);
