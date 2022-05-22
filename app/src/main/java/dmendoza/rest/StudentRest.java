@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import dmendoza.model.Student;
 import dmendoza.model.request.create.StudentCreateRequest;
@@ -56,5 +60,17 @@ public class StudentRest {
    public ResponseEntity<Void> deleteStudent(@PathVariable("id") Integer studentId) {
       studentService.delete(studentId);
       return ResponseEntity.ok().build();
+   }
+
+   @RequestMapping(
+      path = "/alumnos/{id}/fotoPerfil",
+      method = RequestMethod.POST,
+      consumes = {
+         MediaType.MULTIPART_FORM_DATA_VALUE
+      }
+   )
+   public ResponseEntity<Student> uploadProfilePicture(@PathVariable("id") Integer studentId, @RequestPart MultipartFile multipartFile) {
+      Student student = studentService.uploadProfilePicture(studentId, multipartFile);
+      return ResponseEntity.ok().body(student);
    }
 }

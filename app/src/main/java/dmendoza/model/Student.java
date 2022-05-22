@@ -14,6 +14,9 @@ public class Student extends Person {
    @Column(name = "average")
    private Double average;
 
+   @Column(name = "profile_picture")
+   private String profilePicture;
+
    public String getCode() {
       return code;
    }
@@ -28,5 +31,13 @@ public class Student extends Person {
 
    public void setAverage(Double average) {
       this.average = average;
+   }
+
+   public String getProfilePicture() {
+      return profilePicture;
+   }
+
+   public void setProfilePicture(String profilePicture) {
+      this.profilePicture = profilePicture;
    }
 }
